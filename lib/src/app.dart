@@ -1,5 +1,3 @@
-import 'package:dribbble_design/src/ui/screens/detail_screen.dart';
-import 'package:dribbble_design/src/ui/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'ui/screens/login_screen.dart';
@@ -13,7 +11,7 @@ class App extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.white,
       ),
-      home: DetailScreen(),
+      home: LoginScreen(),
     );
   }
 }

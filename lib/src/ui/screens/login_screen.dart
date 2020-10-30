@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 
 import '../widgets/app_raised_button.dart';
 import '../widgets/app_text_field.dart';
+import 'home_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   final formKey = GlobalKey<FormState>();
@@ -17,8 +18,12 @@ class LoginScreen extends StatelessWidget {
   String validatePassword(String value) =>
       value.length < 6 ? 'Password should be more than 5 Characters' : null;
 
-  void navigateToHomeScreen() {
-    if (formKey.currentState.validate()) {}
+  void navigateToHomeScreen(BuildContext context) {
+    if (formKey.currentState.validate()) {
+      Navigator.of(context).push(
+        MaterialPageRoute(builder: (_) => HomeScreen()),
+      );
+    }
   }
 
   @override
@@ -68,7 +73,7 @@ class LoginScreen extends StatelessWidget {
                   SizedBox(height: 24.0),
                   AppRaisedButton(
                     labelText: 'Log in to your account',
-                    onPressed: navigateToHomeScreen,
+                    onPressed: () => navigateToHomeScreen(context),
                   ),
                   SizedBox(height: 24.0),
                   Text.rich(

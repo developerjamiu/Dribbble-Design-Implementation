@@ -4,6 +4,10 @@ import 'package:flutter/services.dart';
 import '../../data/shoes_by_category.dart';
 
 class DetailScreen extends StatelessWidget {
+  void navigateBack(BuildContext context) {
+    Navigator.of(context).pop();
+  }
+
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion(
@@ -13,7 +17,7 @@ class DetailScreen extends StatelessWidget {
       ),
       child: Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: appBar,
+        appBar: appBar(context),
         body: Stack(
           children: [
             Container(
@@ -26,7 +30,8 @@ class DetailScreen extends StatelessWidget {
                 ),
               ),
               child: Padding(
-                padding: const EdgeInsets.only(top: 110.0),
+                padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height * 0.18),
                 child: Text(
                   'Explore\n Nike Series',
                   textAlign: TextAlign.center,
@@ -60,7 +65,7 @@ class DetailScreen extends StatelessWidget {
                     special,
                     SizedBox(height: 16.0),
                     favorite,
-                    SizedBox(height: 16.0),
+                    SizedBox(height: 32.0),
                   ],
                 ),
               ),
@@ -71,19 +76,22 @@ class DetailScreen extends StatelessWidget {
     );
   }
 
-  Widget get appBar => PreferredSize(
+  Widget appBar(BuildContext context) => PreferredSize(
         preferredSize: Size.fromHeight(80),
         child: SafeArea(
           child: Row(
             children: [
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.grey),
-                  borderRadius: BorderRadius.circular(8.0),
+              GestureDetector(
+                onTap: () => navigateBack(context),
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  margin: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(8.0),
+                  child: Icon(Icons.keyboard_backspace, size: 16.0),
                 ),
-                margin: const EdgeInsets.all(16.0),
-                padding: const EdgeInsets.all(8.0),
-                child: Icon(Icons.keyboard_backspace, size: 16.0),
               ),
             ],
           ),

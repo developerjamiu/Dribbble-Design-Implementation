@@ -4,6 +4,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 
 import '../../data/shoes_by_category.dart';
+import 'detail_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -12,6 +13,12 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
+
+  void navigateToDetailScreen() {
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (_) => DetailScreen()),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +44,9 @@ class _HomeScreenState extends State<HomeScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               headline,
-              SizedBox(height: 8.0),
+              SizedBox(height: 16.0),
               favorite,
-              SizedBox(height: 5.0),
+              SizedBox(height: 16.0),
             ],
           ),
         ),
@@ -67,68 +74,71 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       );
 
-  Widget get headline => Stack(
-        children: [
-          Positioned(
-            bottom: 0,
-            right: -40,
-            left: 0,
-            child: Image.asset(
-              'assets/yellow-similar.png',
-              fit: BoxFit.cover,
+  Widget get headline => GestureDetector(
+        onTap: navigateToDetailScreen,
+        child: Stack(
+          children: [
+            Positioned(
+              bottom: 0,
+              right: -40,
+              left: 0,
+              child: Image.asset(
+                'assets/yellow-similar.png',
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: MediaQuery.of(context).size.height * 0.13),
-              Image.asset(
-                'assets/nike-logo.png',
-                width: 80,
-                height: 50,
-              ),
-              Text(
-                'AIRMAX',
-                style: TextStyle(
-                  fontSize: 64,
-                  fontWeight: FontWeight.w900,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: MediaQuery.of(context).size.height * 0.16),
+                Image.asset(
+                  'assets/nike-logo.png',
+                  width: 80,
+                  height: 50,
                 ),
-              ),
-              Text(
-                '2020',
-                style: TextStyle(
-                  fontSize: 64,
-                  fontWeight: FontWeight.w300,
-                  height: 0.9,
+                Text(
+                  'AIRMAX',
+                  style: TextStyle(
+                    fontSize: 64,
+                    fontWeight: FontWeight.w900,
+                  ),
                 ),
-              ),
-              SizedBox(height: 8.0),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    '\$',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
+                Text(
+                  '2020',
+                  style: TextStyle(
+                    fontSize: 64,
+                    fontWeight: FontWeight.w300,
+                    height: 0.9,
                   ),
-                  SizedBox(width: 2.0),
-                  Text(
-                    '200',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
+                ),
+                SizedBox(height: 8.0),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '\$',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  SizedBox(width: 8.0),
-                  Icon(Icons.arrow_forward),
-                ],
-              ),
-              SizedBox(height: 105.0),
-            ],
-          ),
-        ],
+                    SizedBox(width: 2.0),
+                    Text(
+                      '200',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(width: 8.0),
+                    Icon(Icons.arrow_forward),
+                  ],
+                ),
+                SizedBox(height: 130.0),
+              ],
+            ),
+          ],
+        ),
       );
 
   Widget get favorite => Expanded(
